@@ -1,6 +1,7 @@
 // const { append } = require('express/lib/response');
 // const client = require('pg/lib/native/client');
 
+const dbUtils=  require('../utils/dbUtils');
 let sqlUtils = require('../utils/queryUtils');
 
 
@@ -33,7 +34,6 @@ module.exports.insertIntoRestaurants= async(columns, values)=>{
 }
 
 //----------------------------------------------
-const client=  require('../db/dbConfig');
 
 module.exports.getRestaurantsData= ()=> {
     // client.connect();

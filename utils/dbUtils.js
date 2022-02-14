@@ -3,11 +3,11 @@ const config = require('../db/dbConfig');
 
 const pgconfig =
 {
-    user: process.env.USER || "postgres",
-    database: process.env.DATABASE || "postgres",
-    password: process.env.PASSWORD || "root",
-    host: process.env.HOST || "localhost",
-    port: process.env.port || 3000,
+    user: process.env.USER || config.user,
+    database: process.env.DATABASE || config.database,
+    password: process.env.PASSWORD || config.password,
+    host: process.env.HOST || config.host,
+    port: process.env.port || 5432,
     // ssl: config.db.ssl
 }
 
