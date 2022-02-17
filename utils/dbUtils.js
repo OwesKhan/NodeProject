@@ -18,7 +18,7 @@ pool.on('error', function (err, client) {
 
 
 module.exports.getTransaction = async () => {
-    console.l(`getTransaction()`);
+    console.log(`getTransaction()`);
     const client = await pool.connect();
     try {
         await client.query('BEGIN');

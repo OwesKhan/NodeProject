@@ -1,6 +1,17 @@
 let model_Restaurants= require('../models/model_Restaurants');
 let uuid= require("../utils/uuidGenerator");
 
+module.exports.get = async(req,res)=>{
+    console.log("get c called");
+    try{
+        await model_Restaurants.get();return;
+    }
+    catch(e){
+        console.log("error : ",e);
+        return;
+    }
+}
+
 module.exports.insertIntoRestaurants= async (req, res) => {
     
     // let columns= Object.keys(req.body);

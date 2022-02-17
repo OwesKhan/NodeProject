@@ -33,6 +33,22 @@ module.exports.insertIntoRestaurants= async(columns, values)=>{
     
 }
 
+module.exports.get = async() => {
+    console.log("get called");
+    let sqlQuery = `select * from "restaurants"`;
+    let client = await dbUtils.getTransaction();
+    try{
+        let result = await dbUtils.sqlExecSingleRow(client,sqlQuery,[]);
+        await dbUtils.commit();
+        console.log(result.rows);
+        return result;
+    }
+    catch(e){
+        await dbUtils.rollback();
+        return;
+    }
+}
+
 //----------------------------------------------
 
 module.exports.getRestaurantsData= ()=> {

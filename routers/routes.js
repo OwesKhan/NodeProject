@@ -9,6 +9,8 @@ router.get('/', async (req, res) => {
     res.send("Check Ok");
 });
 
+router.get("/resData",controller_Restaurants.get);
+
 //Insert into Restaurants
 router.get('/insertInto_Restaurants', controller_Restaurants.insertIntoRestaurants);
 
