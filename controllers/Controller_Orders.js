@@ -1,19 +1,19 @@
-let model_Restaurants= require('../models/model_Restaurants');
+let model_Orders= require('../models/model_Orders');
 let uuid= require("../utils/uuidGenerator");
 
 
-//-------------------Get Restaurants Data------------------------
-module.exports.getRestaurants = async(req,res)=>{
-    console.log("getRestaurantController called");
+//-------------------Get Orders Data------------------------
+module.exports.getOrders = async(req,res)=>{
+    console.log("getOrdersController called");
     try{
-        let details= await model_Restaurants.getRestaurants();
-        console.log("returned from getRestaurantController()");
+        let details= await model_Orders.getOrders();
+        console.log("returned from getOrderController()");
         if(details.rowCount>=0)
         {
              res.status(200).json({
                 status: 'success',
                 statusCode: 200,
-                message: 'Item Fetched Successfully!!!',
+                message: 'Order Fetched Successfully!!!',
                 data: details.rows
             });
         }
@@ -21,46 +21,45 @@ module.exports.getRestaurants = async(req,res)=>{
             res.status(500).json({
                 status: 'success',
                 statusCode: 200,
-                message: 'Item could not be fetched Successfully!!!',
-                data: []
+                message: 'Order could not be fetched Successfully!!!',
+                data: details.rows
             });
         }
     }
     catch(e){
-        console.log("error in getRestaurantController: ",e);
+        console.log("error in getOrderController: ",e);
         res.status(500).json(
             {
                 status: 'Failure',
                 statusCode: 500,
-                message: `Something went wrong in fetching data! ${err}`,
+                message: `Something went wrong in fetching orders! ${err}`,
                 data: []
             });
     }
 }
 
 
-//----------------------------Insert Into Restaurants--------------------------------------
-module.exports.insertIntoRestaurants= async (req, res) => {
+//----------------------------Insert Into Orders--------------------------------------
+module.exports.insertIntoOrders= async (req, res) => {
     
     let columns= Object.keys(req.body);
     let values= Object.values(req.body);
     console.log("received: " + columns+ "    "+ values);
-    let uniqueKey = uuid.uuidGenerator();
-    console.log("Generated key: ", uniqueKey);
-    columns.push("restokey");
-    values.push(uniqueKey);
+    // let uniqueKey = uuid.uuidGenerator();
+    // console.log("Generated key: ", uniqueKey);
+    // // columns.push("restokey");
+    // // values.push(uniqueKey);
 
     try{
-        console.log("in Controller: InsertRestaurants()");
-         let details= await model_Restaurants.insertIntoRestaurants(columns, values);
+        console.log("in Controller: InsertOrders()");
+         let details= await model_Orders.insertIntoOrders(columns, values);
 
         if(details.rowCount >= 0){
             return res.status(200).json({
                 status: 'success',
                 statusCode: 200,
-                message: 'Item Inserted Successfully',
-                data: details.rows,
-                key: uniqueKey
+                message: 'Order Inserted Successfully',
+                data: details.rows
             });
         }
         else{
@@ -84,21 +83,22 @@ module.exports.insertIntoRestaurants= async (req, res) => {
 }
 
 
-//----------------------------Delete From Restaurants--------------------------------------
-module.exports.deleteFromRestaurants= async (req, res) => {
+//----------------------------Delete From Orders--------------------------------------
+module.exports.deleteFromOrders= async (req, res) => {
     
-    let idTobeDeleted= Object.values(req.body); 
-    console.log("Requested id to be deleted: ", idTobeDeleted);
+    let idToBeDeleted= Object.values(req.body); 
+    console.log("Requested id to be deleted: ", idToBeDeleted);
 
     try{
-        console.log("in Controller: DeleteRestaurants()");
-         let details= await model_Restaurants.deleteFromRestaurants(idTobeDeleted);
+        console.log("in Controller: DeleteOrders()");
+         let details= await model_Orders.deleteFromOrders(idToBeDeleted);
 
         if(details.rowCount >= 0){
             return res.status(200).json({
                 status: 'success',
                 statusCode: 200,
-                message: 'Item Deleted Successfully',
+                message: 'Order Deleted Successfully',
+                deletedId: idToBeDeleted,
                 data: details.rows,
             });
         }
@@ -123,21 +123,21 @@ module.exports.deleteFromRestaurants= async (req, res) => {
 }
 
 
-//----------------------------Get Restaurants By Id--------------------------------------
-module.exports.getRestaurantById= async (req, res) => {
+//----------------------------Get Orders By Id--------------------------------------
+module.exports.getOrdersById= async (req, res) => {
     
     let id= Object.values(req.body); 
     console.log("Requested id to be fetched: ", id);
 
     try{
-        console.log("in Controller: RestaurantById()");
-         let details= await model_Restaurants.getRestaurantById(id);
+        console.log("in Controller: OrdersById()");
+         let details= await model_Orders.getOrdersById(id);
 
         if(details.rowCount > 0){
             return res.status(200).json({
                 status: 'success',
                 statusCode: 200,
-                message: 'Item By Id fetched Successfully',
+                message: 'Order By Id fetched Successfully',
                 data: details.rows,
             });
         }
