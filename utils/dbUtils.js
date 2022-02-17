@@ -31,7 +31,6 @@ module.exports.getTransaction = async () => {
 module.exports.sqlExecSingleRow = async (client, sql, data) => {
         try {console.log("In ClientQuery");
         let result = await client.query(sql, data);
-    
         return result
     } catch (error) {
         throw new Error(error.message);
