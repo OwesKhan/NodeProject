@@ -4,7 +4,10 @@ let uuid= require("../utils/uuidGenerator");
 module.exports.get = async(req,res)=>{
     console.log("get c called");
     try{
-        await model_Restaurants.get();return;
+        await model_Restaurants.get();
+        console.log("returned");
+        return;
+        
     }
     catch(e){
         console.log("error : ",e);

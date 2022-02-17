@@ -39,11 +39,12 @@ module.exports.get = async() => {
     let client = await dbUtils.getTransaction();
     try{
         let result = await dbUtils.sqlExecSingleRow(client,sqlQuery,[]);
-        await dbUtils.commit();
         console.log(result.rows);
+        await dbUtils.commit(client);
         return result;
     }
     catch(e){
+        console.log("error om get :",e)
         await dbUtils.rollback();
         return;
     }
