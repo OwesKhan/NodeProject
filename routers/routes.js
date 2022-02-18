@@ -58,4 +58,36 @@ router.post('/deleteFromDishes', controller_Dishes.deleteFromDishes);
 router.post('/getDishesById', controller_Dishes.getDishById);
 
 
+
+//-----------------------------Login------------------------------------------------------
+const controller_Login = require("../controllers/Controller_Login")
+
+//Get from Orders
+router.get("/getLogin",controller_Login.getLogin);
+
+//Insert into Orders
+router.post('/insertIntoLogin', controller_Login.insertIntoLogin);
+
+// Fetching Orders Data
+router.post('/deleteFromLogin', controller_Login.deleteFromLogin);
+
+// //Fetching User By id
+router.post('/getLoginById', controller_Login.getLoginById);
+
+
+
+//-------------------------JWTAuthentication APIs--------------------
+const JWTAuthController = require('../controllers/controller_Auth');
+
+router.post('/signUp', JWTAuthController.signUp);
+router.post('/signIn', JWTAuthController.signIn);
+router.post('/signOut', JWTAuthController.signOut);
+router.post('/autoSignIn', JWTAuthController.autoSignIn);
+router.post('/refreshTokens', JWTAuthController.refreshAllTokens);
+
+router.post('/forgetPasswordGetLink', JWTAuthController.forgetPassword);
+router.post('/setNewPassword', JWTAuthController.setNewPassword)
+router.post('/resetPassword', JWTAuthController.resetPassword);
+router.post('/setNotificationToken', JWTAuthController.setNotificationToken);
+
 module.exports= router;

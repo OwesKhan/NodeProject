@@ -93,7 +93,7 @@ module.exports.deleteFromDishes= async (req, res) => {
         console.log("in Controller: DeleteDishes()");
          let details= await model_Dishes.deleteFromDishes(idToBeDeleted);
 
-        if(details.rowCount >= 0){
+        if(details.rowCount > 0){
             return res.status(200).json({
                 status: 'success',
                 statusCode: 200,

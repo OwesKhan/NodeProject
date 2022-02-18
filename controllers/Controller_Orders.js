@@ -93,7 +93,7 @@ module.exports.deleteFromOrders= async (req, res) => {
         console.log("in Controller: DeleteOrders()");
          let details= await model_Orders.deleteFromOrders(idToBeDeleted);
 
-        if(details.rowCount >= 0){
+        if(details.rowCount > 0){
             return res.status(200).json({
                 status: 'success',
                 statusCode: 200,
