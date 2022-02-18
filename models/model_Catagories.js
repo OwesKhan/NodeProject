@@ -1,11 +1,14 @@
+// const { append } = require('express/lib/response');
+// const client = require('pg/lib/native/client');
+
 const dbUtils=  require('../utils/dbUtils');
 let sqlUtils = require('../utils/queryUtils');
 
 
-module.exports.getDishes = async() => {
-    console.log("getDishes called");
+module.exports.getCatagories = async() => {
+    console.log("getCatagories called");
 
-    let sqlQuery = `SELECT * FROM dishes`;
+    let sqlQuery = `SELECT * FROM catagories`;
     let client = await dbUtils.getTransaction();
     try{
         let result = await dbUtils.sqlExecSingleRow(client,sqlQuery,[]);
@@ -14,24 +17,24 @@ module.exports.getDishes = async() => {
         return result;
     }
     catch(e){
-        console.log(`model_Dishes: getDishes: Error: ${error.message}`);
+        console.log(`model_Catagories: getCatagories: Error: ${error.message}`);
         await dbUtils.rollback();
         throw new Error(error.message);
     }
 }
 
 
-module.exports.insertIntoDishes= async(columns, values)=>{
+module.exports.insertIntoCatagories= async(columns, values)=>{
     
     console.log("Data= "+ columns+": :"+values);
 
-    let sql = await sqlUtils.insertIntoTable("dishes", columns);
+    let sql = await sqlUtils.insertIntoTable("catagories", columns);
     let data = [...values];
 
     //getTransaction() will return client connected to DB.
     let client = await dbUtils.getTransaction();            
     try{
-        console.log("Inside InsertDishes Model");
+        console.log("Inside InsertCatagories Model");
         //sqlExecSingleRow() will query to DB and return result.
         let result = await dbUtils.sqlExecSingleRow(client, sql, data);  
         //Commit the changes.
@@ -39,7 +42,7 @@ module.exports.insertIntoDishes= async(columns, values)=>{
         return result;
     }
     catch(error){
-        console.log(`model_Dishes: insertIntoDishes: Error: ${error.message}`);
+        console.log(`model_Catagories: insertIntoCatagories: Error: ${error.message}`);
         //rollback all changes.
         await dbUtils.rollback(client);
         throw new Error(error.message);
@@ -48,14 +51,14 @@ module.exports.insertIntoDishes= async(columns, values)=>{
 }
 
 
-module.exports.deleteFromDishes= async(id)=>{
+module.exports.deleteFromCatagories= async(id)=>{
 
-    let sql = `DELETE FROM dishes WHERE dish_id= ${id}`;
+    let sql = `DELETE FROM catagories WHERE catagory_id= ${id}`;
 
     //getTransaction() will return client connected to DB.
     let client = await dbUtils.getTransaction();            
     try{
-        console.log("Inside DeleteDishes Model");
+        console.log("Inside DeleteCatagories Model");
         //sqlExecSingleRow() will query to DB and return result.
         let result = await dbUtils.sqlExecSingleRow(client, sql, []);  
         //Commit the changes.
@@ -63,7 +66,7 @@ module.exports.deleteFromDishes= async(id)=>{
         return result;
     }
     catch(error){
-        console.log(`model_Dishes: deleteDishes: Error: ${error.message}`);
+        console.log(`model_Catagories: deleteCatagories: Error: ${error.message}`);
         //rollback all changes.
         await dbUtils.rollback(client);
         throw new Error(error.message);
@@ -72,14 +75,14 @@ module.exports.deleteFromDishes= async(id)=>{
 }
 
 
-module.exports.getDishById= async(id, whereColumn)=>{
+module.exports.getCatagoriesById= async(id)=>{
 
-    let sql = `SELECT * FROM dishes WHERE ${whereColumn}= ${id}`;
+    let sql = `SELECT * FROM catagories WHERE catagory_id= ${id}`;
 
     //getTransaction() will return client connected to DB.
     let client = await dbUtils.getTransaction();            
     try{
-        console.log("Inside DishById Model");
+        console.log("Inside CatagoriesById Model");
         //sqlExecSingleRow() will query to DB and return result.
         let result = await dbUtils.sqlExecSingleRow(client, sql, []);  
         //Commit the changes.
@@ -87,7 +90,7 @@ module.exports.getDishById= async(id, whereColumn)=>{
         return result;
     }
     catch(error){
-        console.log(`model_Dishes: DishById: Error: ${error.message}`);
+        console.log(`model_Catagories: CatagoriesById: Error: ${error.message}`);
         //rollback all changes.
         await dbUtils.rollback(client);
         throw new Error(error.message);

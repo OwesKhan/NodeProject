@@ -77,6 +77,7 @@ const insertIntoTable = (tableName, columns) => {
     }
     return sqlQuery;
 }
+
 module.exports = {
     selectFromTable,
     insertIntoTable,

@@ -131,7 +131,7 @@ module.exports.getDishById= async (req, res) => {
 
     try{
         console.log("in Controller: DishById()");
-         let details= await model_Dishes.getDishById(id);
+         let details= await model_Dishes.getDishById(id, "dish_id");
 
         if(details.rowCount > 0){
             return res.status(200).json({
