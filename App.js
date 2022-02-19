@@ -3,6 +3,7 @@ const express= require('express');
 const bodyParser= require('body-parser');                        //Body-parser used to handle conversion to and from json;
 const router= require('express').Router();
 const routes= require('./routers/routes');
+const PORT= process.env.PORT || 3000;
 
 const app = express();
 
@@ -13,7 +14,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.use('/foodZone', routes);
 
-app.listen(3000, function(){
+app.listen(PORT, function(){
     console.log('listening on port: '+ 3000);
 })
 // router.get("/", async (req, res) => {
