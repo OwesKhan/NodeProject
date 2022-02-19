@@ -109,7 +109,7 @@ router.post('/getCartById', controller_Cart.getCartById);
 
 
 //-------------------------JWTAuthentication APIs--------------------
-const JWTAuthController = require('../controllers/controller_Auth');
+const JWTAuthController = require('../controllers/Controller_Auth');
 
 router.post('/signUp', JWTAuthController.signUp);
 router.post('/signIn', JWTAuthController.signIn);
