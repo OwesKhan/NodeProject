@@ -32,7 +32,7 @@ module.exports.getDishes = async(req,res)=>{
             {
                 status: 'Failure',
                 statusCode: 500,
-                message: `Something went wrong in fetching dishes! ${err}`,
+                message: `Something went wrong in fetching dishes! ${e}`,
                 data: []
             });
     }
