@@ -1,4 +1,5 @@
 const config= require('./db/dbConfig');
+require('dotenv').config()
 const express= require('express');
 const bodyParser= require('body-parser');                        //Body-parser used to handle conversion to and from json;
 const router= require('express').Router();
@@ -29,7 +30,7 @@ app.listen(PORT, function(){
 //     console.log("inside user");
 //     client.query(`select * from Login`, (err, result)=>{
 //         if(!err) {
-//             res.send(result.rows+ "gjhh");
+//             res.send(result.rows+ "");
 //         }
 //         else{res.send(err.message+ "ok")}
 //     })

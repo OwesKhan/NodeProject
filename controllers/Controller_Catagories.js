@@ -7,7 +7,7 @@ let uuid= require("../utils/uuidGenerator");
 module.exports.getCatagories = async(req,res)=>{
     console.log("getCatagoriesController called");
     try{
-        let details= await model_Catagories.getCatagories();
+        let details= await model_Catagories.getCatagories(); 
         
         console.log("returned from getCatagoriesController()");
         if(details.rowCount>=0)
