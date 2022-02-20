@@ -13,10 +13,10 @@ const client= new Client({
     database: process.env.HEROKU_DB,
     password: process.env.HEROKU_DB_PASSWORD,
     host: process.env.HEROKU_DB_HOST,
-    port: parseInt(process.env.HEROKU_DB_PORT),
+    port: parseInt(process.env.HEROKU_DB_PORT) || 5432,
     ssl: { rejectUnauthorized: false }, 
-    max: 20
-    // idleTimeoutMillis: 30000,
+    max: parseInt(process.env.DB_MAX_CLIENTS) || 20,
+    idleTimeoutMillis: parseInt(process.env.DB_IDLE_TIMEOUT_MS) || 30000,
     // url: process.env.HEROKU_DB_URI,
 });
 
