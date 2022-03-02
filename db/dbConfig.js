@@ -1,8 +1,8 @@
-const {Client, Pool}= require('pg');
+// const {Client, Pool}= require('pg');
 require('dotenv').config()
 // const connectionString= `postgressql://postgres:root@localhost:5432/FoodZone`
 
-const client= new Client({
+const client= {
     // host: "localhost",
     // user: "postgres",
     // port: 5432,
@@ -18,6 +18,6 @@ const client= new Client({
     max: parseInt(process.env.DB_MAX_CLIENTS) || 20,
     idleTimeoutMillis: parseInt(process.env.DB_IDLE_TIMEOUT_MS) || 30000,
     // url: process.env.HEROKU_DB_URI,
-});
+};
 
 module.exports=client;

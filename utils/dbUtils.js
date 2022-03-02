@@ -3,12 +3,13 @@ const config = require('../db/dbConfig');
 
 const pgconfig =
 {
-    user: process.env.USER || config.user,
-    database: process.env.DATABASE || config.database,
-    password: process.env.PASSWORD || config.password,
-    host: process.env.HOST || config.host,
-    port: process.env.port || 5432,
-    // ssl: config.db.ssl
+    user: config.user,
+    database: config.database,
+    password: config.password,
+    host: config.host,
+    port: 5432,
+    ssl: config.ssl,
+    idleTimeoutMillis: config.idleTimeoutMillis
 }
 
 const pool = new Pool(pgconfig);
