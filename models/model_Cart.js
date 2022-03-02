@@ -6,7 +6,7 @@ let sqlUtils = require('../utils/queryUtils');
 
 
 module.exports.getCart = async() => {
-    console.log("getCart called");
+    console.log("getCartModel called");
 
     let sqlQuery = `SELECT * FROM cart`;
     let client = await dbUtils.getTransaction();
